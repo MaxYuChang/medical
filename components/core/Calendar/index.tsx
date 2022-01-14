@@ -4,7 +4,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import zhTwLocale from "@fullcalendar/core/locales/zh-tw";
 import listPlugin from "@fullcalendar/list";
-import { useRef, useState } from "react";
+import { ReactChild, ReactFragment, ReactPortal, useRef, useState } from "react";
 import Styled from "@emotion/styled";
 
 export const Wrapper = Styled.div`
@@ -41,7 +41,7 @@ const Calendar = () => {
     currentEvents: [],
   });
 
-  const handleDateSelect = (selectInfo) => {
+  const handleDateSelect = (selectInfo: { view: { calendar: any; }; startStr: any; endStr: any; allDay: any; }) => {
     let title = prompt("Please enter a new title for your event");
     let calendarApi = selectInfo.view.calendar;
 
@@ -58,7 +58,7 @@ const Calendar = () => {
     }
   };
 
-  function renderEventContent(eventInfo) {
+  function renderEventContent(eventInfo: { timeText: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; event: { title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }; }) {
     return (
       <>
         <b>{eventInfo.timeText}</b>
@@ -67,7 +67,7 @@ const Calendar = () => {
     );
   }
 
-  const handleEventClick = (clickInfo) => {
+  const handleEventClick = (clickInfo: { event: { title: any; remove: () => void; }; }) => {
     if (
       confirm(
         `Are you sure you want to delete the event '${clickInfo.event.title}'`
@@ -77,7 +77,7 @@ const Calendar = () => {
     }
   };
 
-  const handleEvents = (events) => {
+  const handleEvents = (events: any) => {
     setConfig((prev) => {
       return { ...prev, currentEvents: events };
     });
