@@ -58,29 +58,6 @@ const Variants: {
   },
 }
 
-// const Button = ({
-//   variant = 'style1',
-//   text,
-//   children,
-//   disabled = false,
-//   ...rest
-// }: ButtonHTMLAttributes<HTMLButtonElement> & IButtonProps) => {
-//   const styleVariants = Variants[variant]
-//   return (
-//     <button
-//       className={`relative text-white cursor-pointer ${styleVariants.disabled} ${styleVariants.init} ${styleVariants.hover} ${styleVariants.active}`}
-//       disabled={disabled}
-//       {...rest}
-//     >
-//       {text || children}
-//       {/* {variant === 'style4' && (
-//         <div className="absolute right-5 top-3">
-//           <DoubleRightArrow width={20} height={20} />
-//         </div>
-//       )} */}
-//     </button>
-//   )
-// }
 const Button = () => {
   return <div></div>
 }
