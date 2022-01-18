@@ -44,7 +44,7 @@ const Calendar = () => {
   let dev = process.env.NODE_ENV !== 'production'
 
   const { data } = useSWR<any>(
-    [`${dev ? 'http://localhost:3000' : process.env.API_URL}/api/reservation`],
+    [`${dev ? 'http://localhost:3000' : process.env.VERCEL_URL}/api/reservation`],
     async (url) => {
       const data = await fetcher(url, {
         method: 'GET',
