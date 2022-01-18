@@ -43,23 +43,26 @@ export const INITIAL_EVENTS = [
 const Calendar = () => {
   let dev = process.env.NODE_ENV !== 'production'
 
-  const { data } = useSWR<any>(['/api/reservation'], async (url) => {
-    const data = await fetcher(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    if (data.status === 200 && data?.data) {
-      return data?.data.map((_data: { name: any; medicalRecords: any; remark: any }) => {
-        return {
-          ..._data,
-          title: `${_data.name}-${_data.medicalRecords} ${_data.remark}`,
-        }
+  const { data } = useSWR<any>(
+    [`${dev ? 'http://localhost:3000' : 'https://medical-cldom46do-maxyuchang.vercel.app'}/api/reservation`],
+    async (url) => {
+      const data = await fetcher(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
+      if (data.status === 200 && data?.data) {
+        return data?.data.map((_data: { name: any; medicalRecords: any; remark: any }) => {
+          return {
+            ..._data,
+            title: `${_data.name}-${_data.medicalRecords} ${_data.remark}`,
+          }
+        })
+      }
+      return {}
     }
-    return {}
-  })
+  )
   console.log('\x1b[31m💋 ~ data', data)
 
   const calendarRef = useRef(null)
