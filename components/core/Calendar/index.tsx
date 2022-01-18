@@ -41,7 +41,9 @@ export const INITIAL_EVENTS = [
 ]
 
 const Calendar = () => {
-  const { data } = useSWR<any>(['http://localhost:3000/api/reservation'], async (url) => {
+  let dev = process.env.NODE_ENV !== 'production'
+
+  const { data } = useSWR<any>([`${dev ? 'http://localhost:3000' : ''}/api/reservation`], async (url) => {
     const data = await fetcher(url, {
       method: 'GET',
       headers: {
