@@ -49,7 +49,7 @@ const Calendar = () => {
       },
     })
     if (data.status === 200 && data?.data) {
-      return data?.data.map((_data) => {
+      return data?.data.map((_data: { name: any; medicalRecords: any; remark: any }) => {
         return {
           ..._data,
           title: `${_data.name}-${_data.medicalRecords} ${_data.remark}`,
