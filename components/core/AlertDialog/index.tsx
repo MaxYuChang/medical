@@ -2,7 +2,15 @@ import React, { useState } from 'react'
 import BaseDialog from '../BaseDialog'
 import Button from '../Button'
 
-export default function AlertPop({ open, title, content, onOk, onCancel }) {
+export type BaseDialogProps = {
+  open: boolean
+  title?: React.ReactNode
+  content?: React.ReactNode
+  onOk?: () => void
+  onCancel?: () => void
+}
+
+export default function AlertPop({ open, title, content, onOk = () => {}, onCancel = () => {} }: BaseDialogProps) {
   const [openPopup, setOpenPopup] = useState(open)
 
   // function handleClickCancel() {
