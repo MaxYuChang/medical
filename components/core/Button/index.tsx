@@ -65,10 +65,10 @@ const Button = ({
   disabled = false,
   ...rest
 }: ButtonHTMLAttributes<HTMLButtonElement> & IButtonProps) => {
-  const styleVariants = Variants[variant]
+  // const styleVariants = Variants[variant]
   return (
     <button
-      className={`relative text-white cursor-pointer ${styleVariants.disabled} ${styleVariants.init} ${styleVariants.hover} ${styleVariants.active}`}
+      // className={`relative text-white cursor-pointer ${styleVariants.disabled} ${styleVariants.init} ${styleVariants.hover} ${styleVariants.active}`}
       disabled={disabled}
       {...rest}
     >
