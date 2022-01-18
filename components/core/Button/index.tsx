@@ -59,7 +59,7 @@ const Variants: {
 }
 
 const Button = ({
-  // variant = 'style1',
+  variant = 'style1',
   text,
   children,
   disabled = false,
