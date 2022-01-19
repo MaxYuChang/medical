@@ -11,15 +11,6 @@ export default async function handler(req, res) {
     //   break;
     case "GET":
       const posts = await db.collection("reservation").find({}).toArray();
-      // if (posts?.length) {
-      //   const res = posts.map(post => {
-      //     return {
-      //       ...post,
-      //       title: `${posts.name} ${posts.medicalRecords}`
-      //     }
-      //   })
-      //   res.json({ status: 200, data: res });
-      // }
       res.json({ status: 200, data: posts });
       break;
   }

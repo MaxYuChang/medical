@@ -41,9 +41,10 @@ export const INITIAL_EVENTS = [
 ]
 
 const Calendar = () => {
-  let dev = process.env.NODE_ENV !== 'production'
+  // let dev = process.env.NODE_ENV !== 'production'
 
-  const { data } = useSWR<any>([`${dev ? 'http://localhost:3000' : ''}/api/reservation`], async (url) => {
+  // const { data } = useSWR<any>([`${dev ? 'http://localhost:3000' : ''}/api/reservation`], async (url) => {
+  const { data } = useSWR<any>(['/api/reservation'], async (url) => {
     const data = await fetcher(url, {
       method: 'GET',
       headers: {
@@ -60,7 +61,6 @@ const Calendar = () => {
     }
     return {}
   })
-  console.log('\x1b[31m💋 ~ data', data)
 
   const calendarRef = useRef(null)
   const [event, setEvent] = useState(data)
@@ -113,7 +113,6 @@ const Calendar = () => {
   }
 
   const handleEventClick = (clickInfo: { event: { title: any; remove: () => void } }) => {
-    console.log('\x1b[31m💋 ~ clickInfo', clickInfo)
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
       clickInfo.event.remove()
     }
@@ -131,7 +130,6 @@ const Calendar = () => {
 
   useEffect(() => {
     if (data?.length) {
-      console.log(123)
       setEvent(data)
     }
   }, [data])
