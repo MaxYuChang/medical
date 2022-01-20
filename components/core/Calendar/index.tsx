@@ -14,36 +14,35 @@ export function createEventId() {
   return String(eventGuid++)
 }
 
-let eventGuid = 0
-let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
-export const INITIAL_EVENTS = [
-  {
-    id: createEventId(),
-    title: 'All-day event',
-    start: todayStr,
-  },
-  {
-    id: createEventId(),
-    title: 'Timed event',
-    start: todayStr + 'T12:00:00',
-  },
-  // {
-  //   id: createEventId(),
-  //   title: 'new',
-  //   start: '2022-01-17T07:00:00+08:00',
-  //   end: '2022-01-18T07:30:00+08:00',
-  // },
-  {
-    id: createEventId(),
-    title: 'new',
-    start: '2022-01-17',
-  },
-]
+// let eventGuid = 0
+// let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
+// export const INITIAL_EVENTS = [
+//   {
+//     id: createEventId(),
+//     title: 'All-day event',
+//     start: todayStr,
+//   },
+//   {
+//     id: createEventId(),
+//     title: 'Timed event',
+//     start: todayStr + 'T12:00:00',
+//   },
+//   // {
+//   //   id: createEventId(),
+//   //   title: 'new',
+//   //   start: '2022-01-17T07:00:00+08:00',
+//   //   end: '2022-01-18T07:30:00+08:00',
+//   // },
+//   {
+//     id: createEventId(),
+//     title: 'new',
+//     start: '2022-01-17',
+//   },
+// ]
 
 const Calendar = () => {
   // let dev = process.env.NODE_ENV !== 'production'
 
-  // const { data } = useSWR<any>([`${dev ? 'http://localhost:3000' : ''}/api/reservation`], async (url) => {
   const { data } = useSWR<any>(['/api/reservation'], async (url) => {
     const data = await fetcher(url, {
       method: 'GET',
@@ -52,7 +51,7 @@ const Calendar = () => {
       },
     })
     if (data.status === 200 && data?.data) {
-      return data?.data.map((_data: { name: any; medicalRecords: any; remark: any }) => {
+      return data?.data.map((_data: any) => {
         return {
           ..._data,
           title: `${_data.name}-${_data.medicalRecords} ${_data.remark}`,
@@ -134,36 +133,36 @@ const Calendar = () => {
     }
   }, [data])
 
-  let matchList = [
-    {
-      id: '1',
-      title: '第一个任务',
-      start: '2022-01-18 13:22:05',
-      end: '2022-01-18 15:38:05',
-      repeatExecute: false,
-    },
-    {
-      id: '2',
-      title: '第二个任务',
-      start: '2022-01-17 09:45:23',
-      end: '2022-01-17 15:10:23',
-      repeatExecute: false,
-    },
-    {
-      id: '3',
-      name: '第三个任务',
-      startTime: '2019-12-07 15:37:18',
-      endTime: '2019-12-07 19:43:18',
-      repeatExecute: false,
-    },
-    {
-      id: '4',
-      name: '第四个任务',
-      startTime: '2019-12-07 14:49:05',
-      endTime: '2019-12-08 03:15:05',
-      repeatExecute: false,
-    },
-  ]
+  // let matchList = [
+  //   {
+  //     id: '1',
+  //     title: '第一个任务',
+  //     start: '2022-01-18 13:22:05',
+  //     end: '2022-01-18 15:38:05',
+  //     repeatExecute: false,
+  //   },
+  //   {
+  //     id: '2',
+  //     title: '第二个任务',
+  //     start: '2022-01-17 09:45:23',
+  //     end: '2022-01-17 15:10:23',
+  //     repeatExecute: false,
+  //   },
+  //   {
+  //     id: '3',
+  //     name: '第三个任务',
+  //     startTime: '2019-12-07 15:37:18',
+  //     endTime: '2019-12-07 19:43:18',
+  //     repeatExecute: false,
+  //   },
+  //   {
+  //     id: '4',
+  //     name: '第四个任务',
+  //     startTime: '2019-12-07 14:49:05',
+  //     endTime: '2019-12-08 03:15:05',
+  //     repeatExecute: false,
+  //   },
+  // ]
 
   return (
     <Wrapper>
